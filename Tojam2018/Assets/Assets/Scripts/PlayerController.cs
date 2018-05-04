@@ -31,15 +31,23 @@ public class PlayerController : MonoBehaviour {
 
         playerManager = transform.parent.gameObject.GetComponent<PlayerManagerController>();
         playerSpeed = playerManager.playerSpeed;
-        
+
         initDist = Vector3.Project(cam.transform.position - transform.position, playerManager.baseOrientation).magnitude;
     }
-	
-	// Update is called once per frame
-	void FixedUpdate () {
+
+    private void Update()
+    {
+        playerSpeed = playerManager.playerSpeed;
+    }
+
+    // Update is called once per frame
+    void FixedUpdate () {
 
         float moveHorizontal = Input.GetAxis(moveHorizontalAxisName);
         float moveVertical = Input.GetAxis(moveVerticalAxisName);
+
+        //Debug.Log("horiz " + moveHorizontal.ToString() + ", vert " + moveVertical.ToString());
+        Debug.Log(playerSpeed);
 
         Vector3 baseMove = playerManager.baseMovement;
 
@@ -49,15 +57,17 @@ public class PlayerController : MonoBehaviour {
 
         Vector3 futurePosition = rb.position + finalMove * Time.fixedDeltaTime;
 
-        float currDist = Vector3.Project(camera.transform.position - transform.position, playerManager.baseOrientation).magnitude;
+        float currDist = Vector3.Project(cam.transform.position - transform.position, playerManager.baseOrientation).magnitude;
         
         //Debug.Log("Init: " + initDist.ToString() + ", Curr: " + currDist.ToString() + ", Combined: " + (initDist + minDistOffset).ToString());
         
         if (moveVertical < 0 && currDist < initDist + minDistOffset)
         {
             finalMove.z = baseMove.z;
-            futurePosition  = rb.position + finalMove * Time.fixedDeltaTime;
+            futurePosition = rb.position + finalMove * Time.fixedDeltaTime;
         }
+
+        futurePosition.y = 0;
 
         rb.MovePosition(futurePosition);
 
@@ -67,11 +77,9 @@ public class PlayerController : MonoBehaviour {
 
             transform.rotation = Quaternion.LookRotation(toRotate);
         }
-        
-        finalMove.x = rb.position.x;
-        finalMove.y = 0;
-        finalMove.z = rb.position.z;
 
-        rb.MovePosition(finalMove);
+        Animator anim = GetComponent<Animator>();
+
+        anim.speed = finalMove.magnitude / 5;
     }
 }

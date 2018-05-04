@@ -23,7 +23,7 @@ public class PlayerManagerController : MonoBehaviour {
         baseMovement = baseOrientation / baseOrientation.magnitude * baseSpeed;
         if (Input.GetKeyDown("space"))
         {
-            baseSpeed += 20;
+            baseSpeed += 10;
         }
     }
 }

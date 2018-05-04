@@ -398,7 +398,7 @@ MonoBehaviour:
   moveVerticalAxisName: j4_p1_FB
   throwHorizontalAxisName: j4_p1_SLR
   throwVerticalAxisName: j4_p1_SFB
-  camera: {fileID: 1202021097936230}
+  cam: {fileID: 1202021097936230}
   minDistOffset: -4
 --- !u!114 &114466410683196316
 MonoBehaviour:
@@ -426,7 +426,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraOrientation: {x: 0, y: 0, z: 0}
   player: {fileID: 1610864570909282}
-  maxDistOffset: 0
+  maxDistOffset: 5
 --- !u!124 &124853327334873308
 Behaviour:
   m_ObjectHideFlags: 1

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+enum PowerUps {None, WaterBottle, Goat, Fan};
+
 public class PlayerController : MonoBehaviour {
     [Header("Input")]
     public string moveHorizontalAxisName;
@@ -9,7 +11,7 @@ public class PlayerController : MonoBehaviour {
     public string throwHorizontalAxisName;
     public string throwVerticalAxisName;
 
-    public GameObject camera;
+    public GameObject cam;
 
     private Vector3 inputMove = Vector3.zero;
     private Vector3 baseMove = Vector3.zero;
@@ -42,7 +44,7 @@ public class PlayerController : MonoBehaviour {
         playerManager = transform.parent.gameObject.GetComponent<PlayerManagerController>();
         playerSpeed = playerManager.playerSpeed;
         
-        initDist = Vector3.Project(camera.transform.position - transform.position, playerManager.baseOrientation).magnitude;
+        initDist = Vector3.Project(cam.transform.position - transform.position, playerManager.baseOrientation).magnitude;
     }
 	
 	// Update is called once per frame
@@ -59,13 +61,13 @@ public class PlayerController : MonoBehaviour {
 
         futurePosition = rb.position + finalMove * Time.fixedDeltaTime;
 
-        currDist = Vector3.Project(camera.transform.position - transform.position, playerManager.baseOrientation).magnitude;
+        currDist = Vector3.Project(cam.transform.position - transform.position, playerManager.baseOrientation).magnitude;
 
         Debug.Log("Init: " + initDist.ToString() + ", Curr: " + currDist.ToString() + ", Combined: " + (initDist + minDistOffset).ToString());
         
         if (moveVertical < 0 && currDist < initDist + minDistOffset)
         {
-            finalMove.z -= inputMove.z;
+            finalMove.z = baseMove.z;
             futurePosition  = rb.position + finalMove * Time.fixedDeltaTime;
         }
 
@@ -79,7 +81,7 @@ public class PlayerController : MonoBehaviour {
         }
 
         // Bobbing
-        sinCounter += finalMove.magnitude * Time.fixedDeltaTime;
+        sinCounter += finalMove.magnitude * Time.fixedDeltaTime * 2;
 
         if (sinCounter >= Mathf.PI * 100)
             sinCounter -= Mathf.PI * 100;

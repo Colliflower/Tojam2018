@@ -11,27 +11,15 @@ public class PlayerController : MonoBehaviour {
 
     public GameObject camera;
 
-    private Vector3 inputMove = Vector3.zero;
-    private Vector3 baseMove = Vector3.zero;
-    private Vector3 finalMove = Vector3.zero;
-    private Vector3 toRotate = Vector3.zero;
-
     private float playerSpeed = 1;
 
     private Rigidbody rb;
-
-    private float sinCounter = 0;
-
-    private float yOffset = 0;
 
     private PlayerManagerController playerManager;
 
     public float minDistOffset;
 
     private float initDist = 0;
-    private float currDist = 0;
-
-    private Vector3 futurePosition;
 
     // Use this for initialization
     void Start () {
@@ -51,17 +39,17 @@ public class PlayerController : MonoBehaviour {
         float moveHorizontal = Input.GetAxis(moveHorizontalAxisName);
         float moveVertical = Input.GetAxis(moveVerticalAxisName);
 
-        baseMove = playerManager.baseMovement;
+        Vector3 baseMove = playerManager.baseMovement;
 
-        inputMove = new Vector3(moveHorizontal, 0, moveVertical);
+        Vector3 inputMove = new Vector3(moveHorizontal, 0, moveVertical);
         inputMove = inputMove * playerSpeed;
-        finalMove = inputMove + baseMove;
+        Vector3 finalMove = inputMove + baseMove;
 
-        futurePosition = rb.position + finalMove * Time.fixedDeltaTime;
+        Vector3 futurePosition = rb.position + finalMove * Time.fixedDeltaTime;
 
-        currDist = Vector3.Project(camera.transform.position - transform.position, playerManager.baseOrientation).magnitude;
-
-        Debug.Log("Init: " + initDist.ToString() + ", Curr: " + currDist.ToString() + ", Combined: " + (initDist + minDistOffset).ToString());
+        float currDist = Vector3.Project(camera.transform.position - transform.position, playerManager.baseOrientation).magnitude;
+        
+        //Debug.Log("Init: " + initDist.ToString() + ", Curr: " + currDist.ToString() + ", Combined: " + (initDist + minDistOffset).ToString());
         
         if (moveVertical < 0 && currDist < initDist + minDistOffset)
         {
@@ -73,21 +61,13 @@ public class PlayerController : MonoBehaviour {
 
         if (finalMove.magnitude > 0)
         {
-            toRotate = Vector3.RotateTowards(transform.forward, finalMove, 0.5f, 0.0f);
+            Vector3 toRotate = Vector3.RotateTowards(transform.forward, finalMove, 0.5f, 0.0f);
 
             transform.rotation = Quaternion.LookRotation(toRotate);
         }
 
-        // Bobbing
-        sinCounter += finalMove.magnitude * Time.fixedDeltaTime;
-
-        if (sinCounter >= Mathf.PI * 100)
-            sinCounter -= Mathf.PI * 100;
-
-        yOffset = Mathf.Sin(sinCounter) + 2f;
-
         finalMove.x = rb.position.x;
-        finalMove.y = yOffset;
+        finalMove.y = 0;
         finalMove.z = rb.position.z;
 
         rb.MovePosition(finalMove);

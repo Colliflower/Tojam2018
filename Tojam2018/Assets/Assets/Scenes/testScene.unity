@@ -222,7 +222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 5
-  baseSpeed: 6
+  baseSpeed: 0
 --- !u!4 &101445698
 Transform:
   m_ObjectHideFlags: 0
@@ -362,11 +362,16 @@ Prefab:
     - target: {fileID: 114184818032867862, guid: 15405359dd0e266418881ff0bf542be2,
         type: 2}
       propertyPath: log
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1421427269903674, guid: 15405359dd0e266418881ff0bf542be2, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 20914961788891596, guid: 15405359dd0e266418881ff0bf542be2,
+        type: 2}
+      propertyPath: field of view
+      value: 75
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 15405359dd0e266418881ff0bf542be2, type: 2}
@@ -1442,7 +1447,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 75
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -1893,6 +1898,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1928103531}
+  - component: {fileID: 1928103532}
   m_Layer: 0
   m_Name: MapManager
   m_TagString: Untagged
@@ -1913,6 +1919,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1928103532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1928103530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 010561e9da0d93f47be965abcf217ea5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sourceBuildings:
+  - {fileID: 1268785787143388, guid: d911b405dfe53044d93e3845aec82d77, type: 2}
+  - {fileID: 1898260702683852, guid: d564087a44e498044b6a65796ea06e3f, type: 2}
+  - {fileID: 1907471151560956, guid: 9477ff5e1d3f3014fb9964cc5de06a82, type: 2}
+  mapLength: 800
+  spacing: 1
+  width: 7
+  offset: -5
 --- !u!1 &1940677072
 GameObject:
   m_ObjectHideFlags: 0

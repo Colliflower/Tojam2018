@@ -35,5 +35,11 @@ public class CameraController : MonoBehaviour {
         {
             transform.position += (playerManager.baseOrientation / playerManager.baseOrientation.magnitude) * (currDist - (initDist + maxDistOffset));
         }
-	}
+
+        Vector3 up = new Vector3(0, 1, 0);
+
+        Vector3 horizontal = Vector3.Cross(playerManager.baseOrientation, up);
+
+        transform.position += Vector3.Project(player.transform.position - transform.position, horizontal);
+    }
 }

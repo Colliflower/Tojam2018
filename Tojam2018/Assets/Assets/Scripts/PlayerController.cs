@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour {
 
     private float initDist = 0;
 
-    private Vector2 lastFrameVelocity;
+    private Vector3 lastFrameVelocity;
 
     // ===== Item stuff ===== //
     [Header("Throwing")]
@@ -38,6 +38,8 @@ public class PlayerController : MonoBehaviour {
 
     private Vector2 previousThrowVector;
 
+    [Header("Debug")]
+    public bool log;
 
     // Use this for initialization
     void Start () {
@@ -55,7 +57,6 @@ public class PlayerController : MonoBehaviour {
 	void FixedUpdate ()
     {
         HandleMovement();
-        HandleItem();
     }
 
     private void Update()
@@ -72,6 +73,8 @@ public class PlayerController : MonoBehaviour {
         {
             itemIcon.enabled = false;
         }
+
+        HandleItem();
     }
 
     void HandleMovement()
@@ -82,6 +85,11 @@ public class PlayerController : MonoBehaviour {
         Vector3 baseMove = playerManager.baseMovement;
 
         Vector3 inputMove = new Vector3(moveHorizontal, 0, moveVertical);
+
+        if (log)
+        {
+            Debug.Log(inputMove);
+        }
 
         inputMove = inputMove * playerSpeed;
         Vector3 finalMove = inputMove + baseMove;
@@ -98,9 +106,7 @@ public class PlayerController : MonoBehaviour {
 
         futurePosition.y = 0;
 
-        //Debug.Log(futurePosition - rb.position);
-
-        transform.position = (futurePosition);
+        transform.position = futurePosition;
 
         if (finalMove.magnitude > 0)
         {
@@ -113,6 +119,8 @@ public class PlayerController : MonoBehaviour {
         anim.SetFloat("Speed", finalMove.magnitude);
 
         lastFrameVelocity = finalMove;
+        //if (log)
+            //Debug.Log("Velocity: " + finalMove.ToString());
     }
 
     void HandleItem()
@@ -135,14 +143,13 @@ public class PlayerController : MonoBehaviour {
         float throwHorizontal = Input.GetAxis(throwHorizontalAxisName);
         float throwVertical = Input.GetAxis(throwVerticalAxisName);
         Vector2 throwVector = Vector2.ClampMagnitude(new Vector2(throwHorizontal, throwVertical), 1);
-
         // If the item is inactive we need to check whether to activate it.
         if (!itemIsActive)
         {
             // Activate only if the analog stick is outside of the deadzone.
             if (throwVector.magnitude >= throwDeadzone)
             {
-                if (storedItem.Activated())
+                if (!storedItem.Activated())
                 {
                     itemIsActive = true;
                     previousThrowVector = throwVector;

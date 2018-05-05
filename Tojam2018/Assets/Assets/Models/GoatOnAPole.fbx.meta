@@ -1,7 +1,5 @@
 fileFormatVersion: 2
-guid: f0af3936b293a4bdd9e15226261de1c3
-timeCreated: 1525532513
-licenseType: Free
+guid: 9b482aa753c0b4848a2651f65ba78f2c
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
@@ -10,13 +8,11 @@ ModelImporter:
     100004: Geo_Goat
     100006: //RootNode
     100008: Lamp
-    100010: Lamp.001
     400000: Camera
     400002: Circle
     400004: Geo_Goat
     400006: //RootNode
     400008: Lamp
-    400010: Lamp.001
     2000000: Camera
     2100000: No Name
     2100002: lambert5SG
@@ -27,7 +23,6 @@ ModelImporter:
     4300000: Circle
     4300002: Geo_Goat
     10800000: Lamp
-    10800002: Lamp.001
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -47,6 +42,7 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
@@ -71,6 +67,8 @@ ModelImporter:
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88

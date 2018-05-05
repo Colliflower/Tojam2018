@@ -16,6 +16,7 @@ public class PlayerManagerController : MonoBehaviour {
         GameController controller = gameManager.GetComponent<GameController>();
         baseSpeed = controller.baseSpeed;
         playerSpeed = controller.playerSpeed;
+        Debug.Log(playerSpeed);
     }
 	
 	// Update is called once per frame
@@ -23,7 +24,7 @@ public class PlayerManagerController : MonoBehaviour {
         baseMovement = baseOrientation / baseOrientation.magnitude * baseSpeed;
         if (Input.GetKeyDown("space"))
         {
-            baseSpeed += 20;
+            baseSpeed += 10;
         }
     }
 }

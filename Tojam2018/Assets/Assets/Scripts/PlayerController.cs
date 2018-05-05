@@ -219,4 +219,22 @@ public class PlayerController : MonoBehaviour {
     {
         return lastFrameVelocity;
     }
+		
+
+	void OnTriggerStay(Collider collider){
+		if (collider.gameObject.name == "Herd") {
+			Debug.Log (playerManager.baseSpeed);
+			Debug.Log ("TRIGGER TOUCHING HERD");
+			playerManager.baseSpeed = collider.gameObject.GetComponent<HerdSpawner> ().speed;
+			Debug.Log (playerManager.baseSpeed);
+			playerManager.playerSpeed = 0;
+		}
+	}
+	void OnTriggerExit(Collider collider){
+		if (collider.gameObject.name == "Herd") {
+			Debug.Log ("Left collider");
+			playerManager.baseSpeed = playerManager.gameManager.GetComponent<GameController> ().baseSpeed;
+			playerManager.playerSpeed = playerManager.gameManager.GetComponent<GameController> ().playerSpeed;
+		}
+	}
 }

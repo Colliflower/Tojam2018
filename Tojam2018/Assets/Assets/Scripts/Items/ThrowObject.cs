@@ -24,6 +24,7 @@ public class ThrowObject : Item
         Vector3 spawnLocation = user.transform.position + throwSpawnRadius * new Vector3(direction.x, direction.y, 0);
         GameObject go = (GameObject)Instantiate(throwPrefab, spawnLocation, Quaternion.LookRotation(direction));
         Throwable t = go.GetComponent<Throwable>();
+        Debug.Log("Fire At Velocity: " + user.GetVelocity().z);
         t.velocity = new Vector3(direction.x, direction.y, 0) * throwSpeed + (addPlayerSpeed ? user.GetVelocity() : Vector3.zero);
         return true;
     }

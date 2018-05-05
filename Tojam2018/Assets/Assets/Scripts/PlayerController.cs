@@ -119,8 +119,8 @@ public class PlayerController : MonoBehaviour {
         anim.SetFloat("Speed", finalMove.magnitude);
 
         lastFrameVelocity = finalMove;
-        if (log)
-            Debug.Log("Velocity: " + finalMove.ToString());
+        //if (log)
+            //Debug.Log("Velocity: " + finalMove.ToString());
     }
 
     void HandleItem()

@@ -34,6 +34,8 @@ public abstract class Item : MonoBehaviour
     public void AimDown() { OnAimDown(); }
     // Alternative: public void Aim(Vector2 direction) { OnAim(direction); }
 
+    // ===== Implement For Items ===== //
+
     // Called when the player picks up the item.
     public abstract void OnPickedUp();
     // Called when the player activates the item (so when the player starts aiming).
@@ -47,7 +49,8 @@ public abstract class Item : MonoBehaviour
     public abstract bool OnFireRight();
     public abstract bool OnFireUp();
     public abstract bool OnFireDown();
-    // Alternative: public abstract bool OnFire(Vector2 direction);
+    // Alternative, currently not called.
+    public abstract bool OnFire(Vector2 direction);
 
     // Called every frame that the item is activated.
     // Will not be called on the same frame as any Fire function ever.
@@ -55,5 +58,6 @@ public abstract class Item : MonoBehaviour
     public abstract void OnAimRight();
     public abstract void OnAimUp();
     public abstract void OnAimDown();
-    // Alternative: public abstract void OnAim(Vector2 direction);
+    // Alternative, currently not called.
+    public abstract void OnAim(Vector2 direction);
 }

@@ -23,15 +23,17 @@ public class PlayerController : MonoBehaviour {
 
     private float initDist = 0;
 
-    // Item stuff
+    private Vector2 lastFrameVelocity;
 
+    // ===== Item stuff ===== //
     [Header("Throwing")]
     public float throwDeadzone = .5f;
-    
+
     private Item storedItem;
     private bool itemIsActive;
 
     private Vector2 previousThrowVector;
+
 
     // Use this for initialization
     void Start () {
@@ -95,20 +97,21 @@ public class PlayerController : MonoBehaviour {
         }
 
         Animator anim = GetComponent<Animator>();
+        anim.SetFloat("Speed", finalMove.magnitude / 5);
 
-        anim.speed = finalMove.magnitude / 5;
+        lastFrameVelocity = finalMove;
     }
 
     void HandleItem()
     {
         // We only need to manage the item if it exists!
-        if(!storedItem)
+        if (!storedItem)
         {
             return;
         }
 
         // Tick the item. If it returns true, that means the item has been used up!
-        if(storedItem.Tick())
+        if (storedItem.Tick())
         {
             CleanUpItem();
             return;
@@ -126,7 +129,7 @@ public class PlayerController : MonoBehaviour {
             // Activate only if the analog stick is outside of the deadzone.
             if (throwVector.magnitude >= throwDeadzone)
             {
-                if(storedItem.Activated())
+                if (storedItem.Activated())
                 {
                     itemIsActive = true;
                     previousThrowVector = throwVector;
@@ -165,8 +168,8 @@ public class PlayerController : MonoBehaviour {
             }
 
             previousThrowVector = throwVector;
-            
-            if(FiredAndCompleted)
+
+            if (FiredAndCompleted)
             {
                 CleanUpItem();
             }
@@ -175,7 +178,7 @@ public class PlayerController : MonoBehaviour {
 
     public bool PickUpItem(Item item)
     {
-        if(storedItem)
+        if (storedItem)
         {
             return false;
         }
@@ -189,5 +192,10 @@ public class PlayerController : MonoBehaviour {
         storedItem.CleanUp();
         Destroy(storedItem.gameObject);
         storedItem = null;
+    }
+
+    public Vector3 GetVelocity()
+    {
+        return lastFrameVelocity;
     }
 }

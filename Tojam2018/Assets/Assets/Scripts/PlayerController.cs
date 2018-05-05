@@ -82,22 +82,25 @@ public class PlayerController : MonoBehaviour {
         Vector3 baseMove = playerManager.baseMovement;
 
         Vector3 inputMove = new Vector3(moveHorizontal, 0, moveVertical);
+
         inputMove = inputMove * playerSpeed;
         Vector3 finalMove = inputMove + baseMove;
 
-        Vector3 futurePosition = rb.position + finalMove * Time.fixedDeltaTime;
+        Vector3 futurePosition = transform.position + finalMove * Time.fixedDeltaTime;
         
         float currDist = Vector3.Project(cam.transform.position - transform.position, playerManager.baseOrientation).magnitude;
 
         if (moveVertical < 0 && currDist < initDist + minDistOffset)
         {
             finalMove.z = baseMove.z;
-            futurePosition = rb.position + finalMove * Time.fixedDeltaTime;
+            futurePosition = transform.position + finalMove * Time.fixedDeltaTime;
         }
 
         futurePosition.y = 0;
 
-        rb.MovePosition(futurePosition);
+        //Debug.Log(futurePosition - rb.position);
+
+        transform.position = (futurePosition);
 
         if (finalMove.magnitude > 0)
         {

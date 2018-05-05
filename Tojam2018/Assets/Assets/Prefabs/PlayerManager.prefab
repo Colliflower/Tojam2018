@@ -1208,8 +1208,10 @@ MonoBehaviour:
   throwVerticalAxisName: j4_p1_SFB
   cam: {fileID: 1202021097936230}
   minDistOffset: -4
-  throwDeadzone: 0.5
+  throwDeadzone: 0.25
   itemIcon: {fileID: 0}
+  heldColour: {r: 1, g: 1, b: 1, a: 1}
+  activeColour: {r: 0, g: 1, b: 0, a: 1}
 --- !u!114 &114466410683196316
 MonoBehaviour:
   m_ObjectHideFlags: 1

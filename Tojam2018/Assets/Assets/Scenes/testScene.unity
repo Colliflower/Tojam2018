@@ -158,7 +158,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100004, guid: 12489e9d0db1c324d81c8dfbe3a87088, type: 3}
+  - {fileID: 2100000, guid: 953cad6b899f7fb45ac3ba69fa3724c9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -222,7 +222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 5
-  baseSpeed: 2
+  baseSpeed: 6
 --- !u!4 &101445698
 Transform:
   m_ObjectHideFlags: 0
@@ -349,6 +349,16 @@ Prefab:
       propertyPath: m_Name
       value: PlayerManager (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 137301456437066202, guid: 15405359dd0e266418881ff0bf542be2,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f962f3a0791f1bf4aa2f82b833ed29e7, type: 2}
+    - target: {fileID: 137855717017579814, guid: 15405359dd0e266418881ff0bf542be2,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 603ebcc5f863a9443a369cf1c020185f, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 15405359dd0e266418881ff0bf542be2, type: 2}
   m_IsPrefabParent: 0
@@ -1081,7 +1091,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 12489e9d0db1c324d81c8dfbe3a87088, type: 3}
+  - {fileID: 2100000, guid: 5eb43d29d6864494b835c80ff5178cfe, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1835,6 +1845,7 @@ MonoBehaviour:
   itemIcon: {fileID: 940241556}
   heldColour: {r: 1, g: 1, b: 1, a: 1}
   activeColour: {r: 0, g: 1, b: 0, a: 1}
+  log: 0
 --- !u!1 &1618218303
 GameObject:
   m_ObjectHideFlags: 0

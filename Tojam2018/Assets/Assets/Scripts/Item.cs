@@ -20,12 +20,12 @@ public abstract class Item : MonoBehaviour
         return val;
     }
 
-    public bool Tick() { OnTick(); }
-    public bool CleanUp() { OnCleanUp(); }
-    public bool FireLeft() { OnFireLeft(); }
-    public bool FireRight() { OnFireRight(); }
-    public bool FireUp() { OnFireUp(); }
-    public bool FireDown() { OnFireDown(); }
+    public bool Tick() { return OnTick(); }
+    public void CleanUp() { OnCleanUp(); }
+    public bool FireLeft() { return OnFireLeft(); }
+    public bool FireRight() { return OnFireRight(); }
+    public bool FireUp() { return OnFireUp(); }
+    public bool FireDown() { return OnFireDown(); }
     // Alternative: public bool Fire(Vector2 direction) { return OnFire(direction); }
 
     public void AimLeft() { OnAimLeft(); }

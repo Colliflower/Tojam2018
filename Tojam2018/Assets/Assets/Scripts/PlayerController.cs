@@ -139,24 +139,24 @@ public class PlayerController : MonoBehaviour {
         }
         else
         {
-            float absX = Math.Abs(previousThrowVector.X);
-            float absY = Math.Abs(previousThrowVector.Y);
+            float absX = Mathf.Abs(previousThrowVector.x);
+            float absY = Mathf.Abs(previousThrowVector.y);
             bool FiredAndCompleted = false;
             if (previousThrowVector.magnitude >= throwDeadzone)
             {
-                if (absX >= absY && previousThrowVector.X < 0)
+                if (absX >= absY && previousThrowVector.x < 0)
                 {
                     if (throwVector.magnitude < throwDeadzone) { FiredAndCompleted = storedItem.FireLeft(); } else { storedItem.AimLeft(); }
                 }
-                else if (absX >= absY && previousThrowVector.X > 0)
+                else if (absX >= absY && previousThrowVector.x > 0)
                 {
                     if (throwVector.magnitude < throwDeadzone) { FiredAndCompleted = storedItem.FireRight(); } else { storedItem.AimRight(); }
                 }
-                else if (absX <= absY && previousThrowVector.Y < 0)
+                else if (absX <= absY && previousThrowVector.y < 0)
                 {
                     if (throwVector.magnitude < throwDeadzone) { FiredAndCompleted = storedItem.FireUp(); } else { storedItem.AimUp(); }
                 }
-                else if (absX <= absY && previousThrowVector.Y > 0)
+                else if (absX <= absY && previousThrowVector.y > 0)
                 {
                     if (throwVector.magnitude < throwDeadzone) { FiredAndCompleted = storedItem.FireDown(); } else { storedItem.AimDown(); }
                 }
@@ -164,7 +164,7 @@ public class PlayerController : MonoBehaviour {
                 // if (throwVector.magnitude < throwDeadzone) { FiredAndCompleted = storedItem.Fire(previousThrowVector); } else { storedItem.Aim(previousThrowVector); }
             }
 
-            previousThrowVector = throwVec;
+            previousThrowVector = throwVector;
             
             if(FiredAndCompleted)
             {

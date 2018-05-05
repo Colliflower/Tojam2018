@@ -64,9 +64,6 @@ public class PlayerController : MonoBehaviour {
         float moveHorizontal = Input.GetAxis(moveHorizontalAxisName);
         float moveVertical = Input.GetAxis(moveVerticalAxisName);
 
-        //Debug.Log("horiz " + moveHorizontal.ToString() + ", vert " + moveVertical.ToString());
-        Debug.Log(playerSpeed);
-
         Vector3 baseMove = playerManager.baseMovement;
 
         Vector3 inputMove = new Vector3(moveHorizontal, 0, moveVertical);
@@ -76,8 +73,6 @@ public class PlayerController : MonoBehaviour {
         Vector3 futurePosition = rb.position + finalMove * Time.fixedDeltaTime;
         
         float currDist = Vector3.Project(cam.transform.position - transform.position, playerManager.baseOrientation).magnitude;
-        
-        //Debug.Log("Init: " + initDist.ToString() + ", Curr: " + currDist.ToString() + ", Combined: " + (initDist + minDistOffset).ToString());
 
         if (moveVertical < 0 && currDist < initDist + minDistOffset)
         {

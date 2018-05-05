@@ -19,7 +19,6 @@ public class PlayerManagerController : MonoBehaviour {
         GameController controller = gameManager.GetComponent<GameController>();
         baseSpeed = controller.baseSpeed;
         playerSpeed = controller.playerSpeed;
-        Debug.Log(playerSpeed);
     }
 	
 	// Update is called once per frame

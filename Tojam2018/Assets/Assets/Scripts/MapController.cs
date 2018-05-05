@@ -14,29 +14,27 @@ public class MapController : MonoBehaviour {
 
     public float offset;
 
-    private List<GameObject> sceneBuildings;
+    private List<GameObject> leftBuildings;
 
+    private List<GameObject> rightBuildings;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         float currLength = 0;
 
 		if (sourceBuildings.Length > 0)
         {
-            sceneBuildings = new List<GameObject>();
-
-
-            int buildingIx = Mathf.RoundToInt(Random.value * (sourceBuildings.Length - 1));
+            leftBuildings = new List<GameObject>();
             
+            int buildingIx = Mathf.RoundToInt(Random.value * (sourceBuildings.Length - 1));
+
             Vector3 buildingScale = sourceBuildings[buildingIx].transform.localScale;
 
             Vector3 buildingPosition = new Vector3(-(width + buildingScale.x / 2), buildingScale.y / 2, currLength + buildingScale.z / 2 + offset);
 
-            Debug.Log(sourceBuildings[buildingIx].name);
-
             GameObject instance = Instantiate(sourceBuildings[buildingIx], buildingPosition, Quaternion.identity);
-            
-            sceneBuildings.Add(instance);
+
+            leftBuildings.Add(instance);
 
             currLength += buildingScale.z;
             currLength += spacing;
@@ -53,7 +51,7 @@ public class MapController : MonoBehaviour {
                 
                 instance = Instantiate(sourceBuildings[buildingIx], buildingPosition, Quaternion.identity);
 
-                sceneBuildings.Add(instance);
+                leftBuildings.Add(instance);
 
                 currLength += buildingScale.z;
                 currLength += spacing;

@@ -26,13 +26,13 @@ public abstract class Item : MonoBehaviour
     public bool FireRight() { return OnFireRight(); }
     public bool FireUp() { return OnFireUp(); }
     public bool FireDown() { return OnFireDown(); }
-    // Alternative: public bool Fire(Vector2 direction) { return OnFire(direction); }
+    public bool Fire(Vector2 direction) { return OnFire(direction); }
 
     public void AimLeft() { OnAimLeft(); }
     public void AimRight() { OnAimRight(); }
     public void AimUp() { OnAimUp(); }
     public void AimDown() { OnAimDown(); }
-    // Alternative: public void Aim(Vector2 direction) { OnAim(direction); }
+    public void Aim(Vector2 direction) { OnAim(direction); }
 
     // ===== Implement For Items ===== //
 

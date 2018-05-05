@@ -64,9 +64,6 @@ public class PlayerController : MonoBehaviour {
         float moveHorizontal = Input.GetAxis(moveHorizontalAxisName);
         float moveVertical = Input.GetAxis(moveVerticalAxisName);
 
-        //Debug.Log("horiz " + moveHorizontal.ToString() + ", vert " + moveVertical.ToString());
-        Debug.Log(playerSpeed);
-
         Vector3 baseMove = playerManager.baseMovement;
 
         Vector3 inputMove = new Vector3(moveHorizontal, 0, moveVertical);
@@ -76,8 +73,6 @@ public class PlayerController : MonoBehaviour {
         Vector3 futurePosition = rb.position + finalMove * Time.fixedDeltaTime;
         
         float currDist = Vector3.Project(cam.transform.position - transform.position, playerManager.baseOrientation).magnitude;
-        
-        //Debug.Log("Init: " + initDist.ToString() + ", Curr: " + currDist.ToString() + ", Combined: " + (initDist + minDistOffset).ToString());
 
         if (moveVertical < 0 && currDist < initDist + minDistOffset)
         {
@@ -97,7 +92,7 @@ public class PlayerController : MonoBehaviour {
         }
 
         Animator anim = GetComponent<Animator>();
-        anim.SetFloat("Speed", finalMove.magnitude / 5);
+        anim.SetFloat("Speed", finalMove.magnitude);
 
         lastFrameVelocity = finalMove;
     }
@@ -142,11 +137,12 @@ public class PlayerController : MonoBehaviour {
         }
         else
         {
-            float absX = Mathf.Abs(previousThrowVector.x);
-            float absY = Mathf.Abs(previousThrowVector.y);
+            // float absX = Mathf.Abs(previousThrowVector.x);
+            // float absY = Mathf.Abs(previousThrowVector.y);
             bool FiredAndCompleted = false;
             if (previousThrowVector.magnitude >= throwDeadzone)
             {
+                /* 4 Directions
                 if (absX >= absY && previousThrowVector.x < 0)
                 {
                     if (throwVector.magnitude < throwDeadzone) { FiredAndCompleted = storedItem.FireLeft(); } else { storedItem.AimLeft(); }
@@ -163,8 +159,8 @@ public class PlayerController : MonoBehaviour {
                 {
                     if (throwVector.magnitude < throwDeadzone) { FiredAndCompleted = storedItem.FireDown(); } else { storedItem.AimDown(); }
                 }
-                // Alternative: Instead of having cardinal directions, just use an absolute direction.
-                // if (throwVector.magnitude < throwDeadzone) { FiredAndCompleted = storedItem.Fire(previousThrowVector); } else { storedItem.Aim(previousThrowVector); }
+                */
+                if (throwVector.magnitude < throwDeadzone) { FiredAndCompleted = storedItem.Fire(previousThrowVector); } else { storedItem.Aim(previousThrowVector); }
             }
 
             previousThrowVector = throwVector;

@@ -8,11 +8,13 @@ ModelImporter:
     100004: Geo_Goat
     100006: //RootNode
     100008: Lamp
+    100010: Lamp.001
     400000: Camera
     400002: Circle
     400004: Geo_Goat
     400006: //RootNode
     400008: Lamp
+    400010: Lamp.001
     2000000: Camera
     2100000: No Name
     2100002: lambert5SG
@@ -23,6 +25,7 @@ ModelImporter:
     4300000: Circle
     4300002: Geo_Goat
     10800000: Lamp
+    10800002: Lamp.001
   externalObjects: {}
   materials:
     importMaterials: 1

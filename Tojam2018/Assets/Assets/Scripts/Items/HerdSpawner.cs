@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class HerdSpawner : MonoBehaviour {
 	public GameObject goat;
-	public GameObject cam;
 	public int numGoats;
 	private GameObject[] goats;
 	private int counter;

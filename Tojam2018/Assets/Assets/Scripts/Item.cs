@@ -4,8 +4,12 @@ using UnityEngine;
 
 public abstract class Item : MonoBehaviour
 {
+    public Sprite icon;
+
     protected PlayerController user;
     protected bool isActivated;
+
+    public bool IsActivated() { return isActivated; }
 
     public void PickedUp(PlayerController user)
     {

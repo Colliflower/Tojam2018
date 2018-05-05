@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 enum PowerUps {None, WaterBottle, Goat, Fan};
 
@@ -28,6 +29,9 @@ public class PlayerController : MonoBehaviour {
     // ===== Item stuff ===== //
     [Header("Throwing")]
     public float throwDeadzone = .5f;
+    public Image itemIcon;
+    public Color heldColour = Color.white;
+    public Color activeColour = Color.green;
 
     private Item storedItem;
     private bool itemIsActive;
@@ -57,6 +61,17 @@ public class PlayerController : MonoBehaviour {
     private void Update()
     {
         playerSpeed = playerManager.playerSpeed;
+        
+        if (storedItem)
+        {
+            itemIcon.enabled = true;
+            itemIcon.sprite = storedItem.icon;
+            itemIcon.color = storedItem.IsActivated() ? activeColour : heldColour;
+        }
+        else
+        {
+            itemIcon.enabled = false;
+        }
     }
 
     void HandleMovement()

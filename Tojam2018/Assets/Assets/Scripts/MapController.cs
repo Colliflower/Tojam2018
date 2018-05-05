@@ -105,7 +105,7 @@ public class MapController : MonoBehaviour {
             buildingPosition.x = buildingWidth + buildingScale.x / 2;
             buildingPosition.y = buildingScale.y / 2;
             buildingPosition.z = currLength + buildingScale.z / 2 + buildingOffset;
-
+            
             Quaternion orientation = Quaternion.Euler(new Vector3(0, 180, 0));
 
             instance = Instantiate(sourceBuildings[buildingIx], buildingPosition, orientation);

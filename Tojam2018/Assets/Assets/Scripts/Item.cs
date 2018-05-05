@@ -4,13 +4,56 @@ using UnityEngine;
 
 public abstract class Item : MonoBehaviour
 {
-    public abstract bool Tick();
+    protected PlayerController user;
+    protected bool isActivated;
 
-    public abstract bool FireLeft();
+    public void PickedUp(PlayerController user)
+    {
+        this.user = user;
+        OnPickedUp();
+    }
 
-    public abstract bool FireRight();
+    public bool Activated()
+    {
+        bool val = OnActivated();
+        this.isActivated = !val;
+        return val;
+    }
 
-    public abstract bool FireUp();
+    public bool Tick() { OnTick(); }
+    public bool CleanUp() { OnCleanUp(); }
+    public bool FireLeft() { OnFireLeft(); }
+    public bool FireRight() { OnFireRight(); }
+    public bool FireUp() { OnFireUp(); }
+    public bool FireDown() { OnFireDown(); }
+    // Alternative: public bool Fire(Vector2 direction) { return OnFire(direction); }
 
-    public abstract bool FireDown();
+    public void AimLeft() { OnAimLeft(); }
+    public void AimRight() { OnAimRight(); }
+    public void AimUp() { OnAimUp(); }
+    public void AimDown() { OnAimDown(); }
+    // Alternative: public void Aim(Vector2 direction) { OnAim(direction); }
+
+    // Called when the player picks up the item.
+    public abstract void OnPickedUp();
+    // Called when the player activates the item (so when the player starts aiming).
+    public abstract bool OnActivated();
+    // Called every tick that the item is held by the player (whether activated or not).
+    public abstract bool OnTick();
+    // Called when the item has been used up.
+    public abstract void OnCleanUp();
+    // Called once the player has moved and then released the analog stick.
+    public abstract bool OnFireLeft();
+    public abstract bool OnFireRight();
+    public abstract bool OnFireUp();
+    public abstract bool OnFireDown();
+    // Alternative: public abstract bool OnFire(Vector2 direction);
+
+    // Called every frame that the item is activated.
+    // Will not be called on the same frame as any Fire function ever.
+    public abstract void OnAimLeft();
+    public abstract void OnAimRight();
+    public abstract void OnAimUp();
+    public abstract void OnAimDown();
+    // Alternative: public abstract void OnAim(Vector2 direction);
 }

@@ -335,16 +335,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 114184818032867862, guid: 15405359dd0e266418881ff0bf542be2,
-        type: 2}
-      propertyPath: itemIcon
-      value: 
-      objectReference: {fileID: 1481258456}
     - target: {fileID: 114041608236458396, guid: 15405359dd0e266418881ff0bf542be2,
         type: 2}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 101445696}
+    - target: {fileID: 114184818032867862, guid: 15405359dd0e266418881ff0bf542be2,
+        type: 2}
+      propertyPath: itemIcon
+      value: 
+      objectReference: {fileID: 1481258456}
     - target: {fileID: 1421427269903674, guid: 15405359dd0e266418881ff0bf542be2, type: 2}
       propertyPath: m_Name
       value: PlayerManager (1)

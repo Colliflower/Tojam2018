@@ -55,7 +55,6 @@ public class PlayerController : MonoBehaviour {
 	void FixedUpdate ()
     {
         HandleMovement();
-        HandleItem();
     }
 
     private void Update()
@@ -72,6 +71,8 @@ public class PlayerController : MonoBehaviour {
         {
             itemIcon.enabled = false;
         }
+
+        HandleItem();
     }
 
     void HandleMovement()
@@ -97,8 +98,6 @@ public class PlayerController : MonoBehaviour {
         }
 
         futurePosition.y = 0;
-
-        //Debug.Log(futurePosition - rb.position);
 
         transform.position = (futurePosition);
 
@@ -135,14 +134,13 @@ public class PlayerController : MonoBehaviour {
         float throwHorizontal = Input.GetAxis(throwHorizontalAxisName);
         float throwVertical = Input.GetAxis(throwVerticalAxisName);
         Vector2 throwVector = Vector2.ClampMagnitude(new Vector2(throwHorizontal, throwVertical), 1);
-
         // If the item is inactive we need to check whether to activate it.
         if (!itemIsActive)
         {
             // Activate only if the analog stick is outside of the deadzone.
             if (throwVector.magnitude >= throwDeadzone)
             {
-                if (storedItem.Activated())
+                if (!storedItem.Activated())
                 {
                     itemIsActive = true;
                     previousThrowVector = throwVector;

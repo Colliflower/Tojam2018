@@ -56,7 +56,7 @@ public class MapController : MonoBehaviour {
                 currLength += buildingScale.z;
                 currLength += spacing;
 
-                Debug.Log("Curr: " + currLength.ToString() + ", Max: " + mapLength.ToString());
+                //Debug.Log("Curr: " + currLength.ToString() + ", Max: " + mapLength.ToString());
             }
         }
 	}

@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class GoalController : MonoBehaviour {
 
+    public GameObject p1Win;
+    public GameObject p2Win;
+    int playersFinished = 0;
 	// Use this for initialization
 	void Start () {
 		
@@ -15,7 +18,24 @@ public class GoalController : MonoBehaviour {
 	}
 
 	void OnCollisionEnter(Collision other){
-		Debug.Log (other.transform.parent.gameObject.name + " Finished!");
-		other.transform.parent.gameObject.GetComponent<PlayerManagerController> ().baseSpeed = 0;
+        PlayerManagerController pmc;
+        PlayerController pc;
+        if (other.rigidbody && other.rigidbody.transform.parent && (pmc = other.rigidbody.transform.parent.GetComponent<PlayerManagerController>()) != null && (pc = other.rigidbody.GetComponent<PlayerController>()) != null)
+        {
+            Debug.Log(pmc.name + " Finished!");
+            pmc.baseSpeed = 0;
+            playersFinished++;
+            if (playersFinished == GameController.theGame.playerCount - 1)
+            {
+                if (pc.playerId == 1)
+                {
+                    p1Win.SetActive(true);
+                }
+                else
+                {
+                    p2Win.SetActive(true);
+                }
+            }
+        }
 	}
 }

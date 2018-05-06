@@ -114,8 +114,7 @@ public class MapController : MonoBehaviour {
 
             currLength += buildingScale.z;
             currLength += buildingSpacing;
-
-
+            
             while (currLength < mapLength)
             {
                 buildingIx = Mathf.RoundToInt(Random.value * (sourceBuildings.Length - 1));

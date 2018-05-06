@@ -64,10 +64,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64c1a587c93d64be697755cbd6cb9cf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goat: {fileID: 1289220550666012, guid: 2c5a32a19b9344d27b0fc38e965ae6eb, type: 2}
-  cam: {fileID: 0}
+  goat: {fileID: 1556805520488386, guid: 2c5a32a19b9344d27b0fc38e965ae6eb, type: 2}
   numGoats: 7
   xOffset: 1.5
   zOffset: 1.5
-  speed: 6
+  speed: 12
   step: 0.5

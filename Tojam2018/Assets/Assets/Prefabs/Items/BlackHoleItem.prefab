@@ -9,49 +9,48 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1030354074040322}
+  m_RootGameObject: {fileID: 1840234386367654}
   m_IsPrefabParent: 1
---- !u!1 &1030354074040322
+--- !u!1 &1840234386367654
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4080892643277004}
-  - component: {fileID: 114788945732361352}
+  - component: {fileID: 4096156986321954}
+  - component: {fileID: 114434734128459390}
   m_Layer: 0
-  m_Name: FanSpawnerItem
+  m_Name: BlackHoleItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4080892643277004
+--- !u!4 &4096156986321954
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1030354074040322}
+  m_GameObject: {fileID: 1840234386367654}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.884201, y: -0.33896613, z: -2.3727393}
+  m_LocalPosition: {x: 4.54963, y: 6.5453653, z: 203.80522}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114788945732361352
+--- !u!114 &114434734128459390
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1030354074040322}
+  m_GameObject: {fileID: 1840234386367654}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 987d6cad427dd4b45b584f2f7306374c, type: 3}
+  m_Script: {fileID: 11500000, guid: bd0a9d85db7557f4180d7822493e4797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  fan: {fileID: 1555958407344344, guid: 8e1a9e11ccec04ae499dcac10c2fde3b, type: 2}
-  duration: 3
-  timerOffset: 3.14
+  icon: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  blackholePrefab: {fileID: 1283730648589968, guid: 934b1457eafb9e84e8317cc9dfd86514,
+    type: 2}

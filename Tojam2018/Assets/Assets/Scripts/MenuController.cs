@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour {
 
@@ -36,6 +37,17 @@ public class MenuController : MonoBehaviour {
 				index = 2;
 			}
 			options [index % 3].GetComponent<Renderer> ().material = selectmat;
+
+		}
+		if (Input.GetKeyDown ("space")) {
+			if (index % 3 == 0) {
+				GetComponent<AudioSource> ().Stop ();
+				SceneManager.LoadScene("testScene", LoadSceneMode.Additive);
+			}
+			else if (index % 3 == 2) {
+				Application.Quit();
+			}
+
 
 		}
 		transform.Rotate (Vector3.up * 50 * Time.deltaTime);

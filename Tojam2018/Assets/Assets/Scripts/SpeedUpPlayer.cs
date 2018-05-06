@@ -28,7 +28,7 @@ public class SpeedUpPlayer : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if(startTime >= 0)
+        if(startTime >= 0 || !other.attachedRigidbody)
         {
             return;
         }

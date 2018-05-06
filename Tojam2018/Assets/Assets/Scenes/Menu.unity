@@ -811,3 +811,4 @@ MonoBehaviour:
   credits: {fileID: 1443253948}
   exit: {fileID: 682912124}
   selectmat: {fileID: 2100000, guid: 3c971a121c9424235a3ff7fbc83773aa, type: 2}
+  creditImage: {fileID: 2800000, guid: 6276043bdccdc4077bb8ac06d62b9033, type: 3}

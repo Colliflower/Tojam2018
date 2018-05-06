@@ -36,7 +36,6 @@ public class BlackHoleController : MonoBehaviour {
 
             creatorController.BlackHoleTriggered();
             otherController.BlackHoleTriggered();
-            Debug.Log("test");
 
             Destroy(gameObject);
         }

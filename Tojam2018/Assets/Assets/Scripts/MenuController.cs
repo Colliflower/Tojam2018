@@ -14,6 +14,8 @@ public class MenuController : MonoBehaviour {
 	private GameObject[] options;
 	private int index;
 	private bool showCredits;
+	private AudioSource hornSource;
+	public AudioClip horn;
 	// Use this for initialization
 	void Start () {
 		basemat = play.GetComponent<Renderer> ().material;
@@ -24,6 +26,9 @@ public class MenuController : MonoBehaviour {
 		index = 0;
 		showCredits = false;
 		options [index % 3].GetComponent<Renderer> ().material = selectmat;
+		hornSource = gameObject.AddComponent<AudioSource> ();
+		hornSource.volume = 0.8f;
+		hornSource.clip = horn;
 	}
 	
 	// Update is called once per frame
@@ -32,6 +37,8 @@ public class MenuController : MonoBehaviour {
 			options [index % 3].GetComponent<Renderer> ().material = basemat;
 			index += 1;
 			options [index % 3].GetComponent<Renderer> ().material = selectmat;
+			showCredits = false;
+			hornSource.Play ();
 		}
 		if (Input.GetKeyDown ("a")) {
 			options [index % 3].GetComponent<Renderer> ().material = basemat;
@@ -39,14 +46,16 @@ public class MenuController : MonoBehaviour {
 			if (index < 0) {
 				index = 2;
 			}
+			showCredits = false;
 			options [index % 3].GetComponent<Renderer> ().material = selectmat;
+			hornSource.Play();
 
 		}
 		if (Input.GetKeyDown ("space")) {
 			showCredits = false;
 			if (index % 3 == 0) {
 				GetComponent<AudioSource> ().Stop ();
-				SceneManager.LoadScene("testScene", LoadSceneMode.Additive);
+				SceneManager.LoadScene("testScene");
 			}
 			else if (index % 3 == 1) {
 				showCredits = true;

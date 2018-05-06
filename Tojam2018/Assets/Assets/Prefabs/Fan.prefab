@@ -115,6 +115,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100002, guid: 3812353e995ce48d886013069cab1ca2, type: 3}
   m_StaticBatchInfo:
@@ -149,6 +150,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 3812353e995ce48d886013069cab1ca2, type: 3}
   m_StaticBatchInfo:
@@ -199,4 +201,7 @@ MonoBehaviour:
   idol: {fileID: 0}
   baseSpeed: 0
   timer: 0
-  step: 0
+  animOffset: 0
+  duration: 0
+  hopSpeed: 5
+  moveSpeedScale: 0.1

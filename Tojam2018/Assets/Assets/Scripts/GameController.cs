@@ -11,6 +11,7 @@ public class GameController : MonoBehaviour {
 	public GameObject lastManager = null;
 	public GameObject firstPlayer = null;
 	public GameObject firstManager = null;
+    public int playerCount = 2;
 	private GameObject[] playerManagers;
 	float minZ;
 	float maxZ;

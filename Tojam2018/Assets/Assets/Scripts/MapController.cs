@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MapController : MonoBehaviour {
-    public GameObject gameManager;
-
+    
     public GameObject invisbleFence;
 
     public GameObject[] sourceFences;
@@ -13,33 +12,40 @@ public class MapController : MonoBehaviour {
 
     public GameObject[] sourceGrounds;
 
+    public GameObject itemBoxPrefab;
+
+    public GameObject[] items;
+
     public float renderDistance;
 
     public float mapLength;
 
     public float buildingSpacing;
-
     public float buildingWidth;
-
     public float buildingOffset;
 
     public float fenceWidth;
-
     public float fenceSpacing;
-
     public float fenceOffset;
-
+    
     public float groundOffset;
+    
+    public float trackRadius = 4.5f;
+    public float itemBoxSeparation = 5;
+    public float itemBoxGap = 2;
+    public float itemBoxChance = .25f;
 
     private List<GameObject> leftBuildings;
-
     private List<GameObject> rightBuildings;
 
     private List<GameObject> leftFences;
-
     private List<GameObject> rightFences;
-
+    
     private List<GameObject> grounds;
+
+    private List<GameObject[]> itemBoxes;
+
+    private float lastItemAttempt;
 
     // Use this for initialization
     void Start () {
@@ -70,11 +76,13 @@ public class MapController : MonoBehaviour {
         rightFences = new List<GameObject>();
 
         grounds = new List<GameObject>();
+
+        itemBoxes = new List<GameObject[]>();
     }
 	
 	// Update is called once per frame
 	void Update () {
-        GameObject frontMostPlayer = gameManager.GetComponent<GameController>().firstPlayer;
+        GameObject frontMostPlayer = GameController.theGame.firstPlayer;
 
         float currentFrontier = frontMostPlayer.transform.position.z;
 
@@ -85,7 +93,9 @@ public class MapController : MonoBehaviour {
 
         SpawnObjects(sourceGrounds, grounds, currentFrontier, 0, groundOffset, 0, Quaternion.identity, false);
 
-        GameObject backMostPlayer = gameManager.GetComponent<GameController>().lastPlayer;
+        // SpawnItemBox(currentFrontier);
+
+        GameObject backMostPlayer = GameController.theGame.lastPlayer;
 
         currentFrontier = backMostPlayer.transform.position.z;
 
@@ -241,6 +251,45 @@ public class MapController : MonoBehaviour {
         //    currLength += fenceScale.z;
         //    currLength += fenceSpacing;
         //}
+    }
+
+    private void SpawnItemBox(float currentFrontier)
+    {
+        int boxLineCount = Mathf.FloorToInt((currentFrontier - lastItemAttempt) / itemBoxSeparation);
+        if (boxLineCount > 0)
+        {
+            for (int i = 0; i < boxLineCount; i++)
+            {
+                float rand = Random.value;
+                GameObject[] obj = new GameObject[GameController.theGame.playerCount / 2];
+                for (int j = 0; j < GameController.theGame.playerCount / 2; j++)
+                {
+                    Vector3 pos = new Vector3(rand * (trackRadius * 2 - (GameController.theGame.playerCount / 2 - 1) * itemBoxGap) + j * itemBoxGap - trackRadius, 0, lastItemAttempt + (i + 1) * itemBoxSeparation);
+                    ItemBox box = Instantiate(itemBoxPrefab, pos, Quaternion.identity).GetComponent<ItemBox>();
+                    int itemRand = Mathf.RoundToInt(Random.value * (items.Length - 1));
+                    box.itemPrefab = items[itemRand];
+                    obj[j] = box.gameObject;
+                }
+                itemBoxes.Add(obj);
+            }
+
+            lastItemAttempt += boxLineCount * itemBoxSeparation;
+        }
+    }
+
+    private void DeSpawnItemBox(float currentFrontier)
+    {
+        if(itemBoxes.Count > 0)
+        {
+            if(itemBoxes[0][0].transform.position.z + renderDistance < currentFrontier)
+            {
+                for(int i = 0; i < itemBoxes[0].Length; i++)
+                {
+                    Destroy(itemBoxes[0][i]);
+                }
+                itemBoxes.RemoveAt(0);
+            }
+        }
     }
 
     private void SpawnObjects(GameObject[] sourceObjects, List<GameObject> currentObjects, float currentFrontier, float spacing, float offset, float width, Quaternion orientation, bool shouldCenter = true)

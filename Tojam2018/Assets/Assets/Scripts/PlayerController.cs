@@ -269,8 +269,8 @@ public class PlayerController : MonoBehaviour {
 	void OnTriggerExit(Collider collider){
 		if (collider.gameObject.GetComponent<HerdSpawner>()) {
 			//Debug.Log ("Left collider");
-			playerManager.baseSpeed = playerManager.gameManager.GetComponent<GameController> ().baseSpeed;
-			playerManager.playerSpeed = playerManager.gameManager.GetComponent<GameController> ().playerSpeed;
+			playerManager.baseSpeed = GameController.theGame.baseSpeed;
+			playerManager.playerSpeed = GameController.theGame.playerSpeed;
 		}
 	}
 

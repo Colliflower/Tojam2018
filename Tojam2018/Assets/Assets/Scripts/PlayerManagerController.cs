@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class PlayerManagerController : MonoBehaviour {
 
-    public GameObject gameManager;
-
     public float playerSpeed;
     public float baseSpeed;
     public Vector3 baseOrientation;
@@ -16,7 +14,7 @@ public class PlayerManagerController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        GameController controller = gameManager.GetComponent<GameController>();
+        GameController controller = GameController.theGame;
         baseSpeed = controller.baseSpeed;
         playerSpeed = controller.playerSpeed;
     }

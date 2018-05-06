@@ -16,6 +16,9 @@ public class MenuController : MonoBehaviour {
 	private bool showCredits;
 	private AudioSource hornSource;
 	public AudioClip horn;
+
+    private bool canGoLeft;
+    private bool canGoRight;
 	// Use this for initialization
 	void Start () {
 		basemat = play.GetComponent<Renderer> ().material;
@@ -33,14 +36,25 @@ public class MenuController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown ("d")) {
+        if (Input.GetAxis("menu_LR") > -0.8) {
+            canGoLeft = true; 
+        }
+
+        if (Input.GetAxis("menu_LR") < 0.8)
+        {
+            canGoRight = true;
+        }
+
+        if (Input.GetKeyDown ("d") || Input.GetAxis("menu_LR") > 0.8 && canGoRight) {
+            canGoRight = false;
 			options [index % 3].GetComponent<Renderer> ().material = basemat;
 			index += 1;
 			options [index % 3].GetComponent<Renderer> ().material = selectmat;
 			showCredits = false;
 			hornSource.Play ();
 		}
-		if (Input.GetKeyDown ("a")) {
+		if (Input.GetKeyDown ("a") || Input.GetAxis("menu_LR") < -0.8 && canGoLeft) {
+            canGoLeft = false;
 			options [index % 3].GetComponent<Renderer> ().material = basemat;
 			index -= 1;
 			if (index < 0) {
@@ -51,7 +65,7 @@ public class MenuController : MonoBehaviour {
 			hornSource.Play();
 
 		}
-		if (Input.GetKeyDown ("space")) {
+		if (Input.GetKeyDown ("space") || Input.GetButtonDown("menu_A")) {
 			showCredits = false;
 			if (index % 3 == 0) {
 				GetComponent<AudioSource> ().Stop ();

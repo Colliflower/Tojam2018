@@ -38,6 +38,9 @@ public class PlayerController : MonoBehaviour {
 
     private Vector2 previousThrowVector;
 
+    [HideInInspector]
+    public float speedUpAmount = 0;
+
     [Header("Debug")]
     public bool log;
 
@@ -82,7 +85,7 @@ public class PlayerController : MonoBehaviour {
         float moveHorizontal = Input.GetAxis(moveHorizontalAxisName);
         float moveVertical = Input.GetAxis(moveVerticalAxisName);
 
-        Vector3 baseMove = playerManager.baseMovement;
+        Vector3 baseMove = playerManager.baseMovement + Vector3.forward * speedUpAmount;
 
         Vector3 inputMove = new Vector3(moveHorizontal, 0, moveVertical);
 
@@ -185,7 +188,7 @@ public class PlayerController : MonoBehaviour {
                     if (throwVector.magnitude < throwDeadzone) { FiredAndCompleted = storedItem.FireDown(); } else { storedItem.AimDown(); }
                 }
                 */
-                if (throwVector.magnitude < throwDeadzone) { FiredAndCompleted = storedItem.Fire(previousThrowVector); } else { storedItem.Aim(previousThrowVector); }
+                if (throwVector.magnitude < throwDeadzone) { FiredAndCompleted = storedItem.Fire(previousThrowVector.normalized); } else { storedItem.Aim(previousThrowVector.normalized); }
             }
 
             previousThrowVector = throwVector;
@@ -222,16 +225,18 @@ public class PlayerController : MonoBehaviour {
 		
 
 	void OnTriggerStay(Collider collider){
-		if (collider.gameObject.name == "Herd") {
+        HerdSpawner sp = collider.gameObject.GetComponent<HerdSpawner>();
+
+        if (sp) {
 			//Debug.Log (playerManager.baseSpeed);
 			//Debug.Log ("TRIGGER TOUCHING HERD");
-			playerManager.baseSpeed = collider.gameObject.GetComponent<HerdSpawner> ().speed;
+			playerManager.baseSpeed = sp.speed;
 			//Debug.Log (playerManager.baseSpeed);
 			playerManager.playerSpeed = 0;
 		}
 	}
 	void OnTriggerExit(Collider collider){
-		if (collider.gameObject.name == "Herd") {
+		if (collider.gameObject.GetComponent<HerdSpawner>()) {
 			//Debug.Log ("Left collider");
 			playerManager.baseSpeed = playerManager.gameManager.GetComponent<GameController> ().baseSpeed;
 			playerManager.playerSpeed = playerManager.gameManager.GetComponent<GameController> ().playerSpeed;

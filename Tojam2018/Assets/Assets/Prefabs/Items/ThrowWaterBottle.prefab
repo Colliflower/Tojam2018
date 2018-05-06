@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4671409161831130}
   - component: {fileID: 114035355732065098}
   m_Layer: 0
-  m_Name: ThrowSphere
+  m_Name: ThrowWaterBottle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52,8 +52,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  throwSpeed: 5
+  throwSpeed: 20
   throwSpawnRadius: 1.5
+  throwSpawnHeight: 1
   throwPrefab: {fileID: 1986759321501888, guid: aec6ad4c6da96a940b938ca76f9932fa,
     type: 2}
   addPlayerSpeed: 1

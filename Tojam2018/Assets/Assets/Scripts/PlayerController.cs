@@ -38,6 +38,10 @@ public class PlayerController : MonoBehaviour {
     [Range(1, 4)]
     public int playerId;
 
+    public ParticleSystem sys1;
+    public ParticleSystem sys2;
+    public float teleportParticlesPlayTime;
+
     // ===== Item stuff ===== //
     [Header("Throwing")]
     public float throwDeadzone = .5f;
@@ -71,6 +75,11 @@ public class PlayerController : MonoBehaviour {
 
 		canStep = true;
 		audioStep = playerManager.baseSpeed/20;
+
+        ParticleSystem.EmissionModule mod = sys1.emission;
+        mod.enabled = false;
+        mod = sys2.emission;
+        mod.enabled = false;
     }
 
 	// Update is called once per frame
@@ -278,6 +287,21 @@ public class PlayerController : MonoBehaviour {
 
     public void BlackHoleTriggered()
     {
+        StartCoroutine(HandleTeleportParticles());
+    }
 
+    IEnumerator HandleTeleportParticles()
+    {
+        ParticleSystem.EmissionModule mod = sys1.emission;
+        mod.enabled = true;
+        mod = sys2.emission;
+        mod.enabled = true;
+
+        yield return new WaitForSeconds(teleportParticlesPlayTime);
+
+        mod = sys1.emission;
+        mod.enabled = false;
+        mod = sys2.emission;
+        mod.enabled = false;
     }
 }

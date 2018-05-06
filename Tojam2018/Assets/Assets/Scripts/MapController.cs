@@ -43,9 +43,9 @@ public class MapController : MonoBehaviour {
     
     private List<GameObject> grounds;
 
-    private List<GameObject[]> itemBoxes;
+    private List<GameObject> itemBoxes;
 
-    private float lastItemAttempt;
+    public float lastItemAttempt;
 
     // Use this for initialization
     void Start () {
@@ -77,7 +77,7 @@ public class MapController : MonoBehaviour {
 
         grounds = new List<GameObject>();
 
-        itemBoxes = new List<GameObject[]>();
+        itemBoxes = new List<GameObject>();
     }
 	
 	// Update is called once per frame
@@ -93,7 +93,7 @@ public class MapController : MonoBehaviour {
 
         SpawnObjects(sourceGrounds, grounds, currentFrontier, 0, groundOffset, 0, Quaternion.identity, false);
 
-        // SpawnItemBox(currentFrontier);
+        SpawnItemBox(currentFrontier);
 
         GameObject backMostPlayer = GameController.theGame.lastPlayer;
 
@@ -104,44 +104,34 @@ public class MapController : MonoBehaviour {
         DeSpawnObjects(leftFences, currentFrontier);
         DeSpawnObjects(rightFences, currentFrontier);
         DeSpawnObjects(grounds, currentFrontier);
+
+        DeSpawnObjects(itemBoxes, currentFrontier);
     }
 
     private void SpawnItemBox(float currentFrontier)
     {
-        int boxLineCount = Mathf.FloorToInt((currentFrontier - lastItemAttempt) / itemBoxSeparation);
+        int boxLineCount = Mathf.FloorToInt((currentFrontier + renderDistance - lastItemAttempt) / itemBoxSeparation);
         if (boxLineCount > 0)
         {
             for (int i = 0; i < boxLineCount; i++)
             {
+                if(Random.value > itemBoxChance)
+                {
+                    continue;
+                }
                 float rand = Random.value;
-                GameObject[] obj = new GameObject[GameController.theGame.playerCount / 2];
                 for (int j = 0; j < GameController.theGame.playerCount / 2; j++)
                 {
                     Vector3 pos = new Vector3(rand * (trackRadius * 2 - (GameController.theGame.playerCount / 2 - 1) * itemBoxGap) + j * itemBoxGap - trackRadius, 0, lastItemAttempt + (i + 1) * itemBoxSeparation);
                     ItemBox box = Instantiate(itemBoxPrefab, pos, Quaternion.identity).GetComponent<ItemBox>();
                     int itemRand = Mathf.RoundToInt(Random.value * (items.Length - 1));
                     box.itemPrefab = items[itemRand];
-                    obj[j] = box.gameObject;
+                    box.AssignItemBoxes(itemBoxes);
+                    itemBoxes.Add(box.gameObject);
                 }
-                itemBoxes.Add(obj);
             }
 
             lastItemAttempt += boxLineCount * itemBoxSeparation;
-        }
-    }
-
-    private void DeSpawnItemBox(float currentFrontier)
-    {
-        if(itemBoxes.Count > 0)
-        {
-            if(itemBoxes[0][0].transform.position.z + renderDistance < currentFrontier)
-            {
-                for(int i = 0; i < itemBoxes[0].Length; i++)
-                {
-                    Destroy(itemBoxes[0][i]);
-                }
-                itemBoxes.RemoveAt(0);
-            }
         }
     }
 
@@ -248,6 +238,11 @@ public class MapController : MonoBehaviour {
         if (currentObjects.Count > 0)
         {
             GameObject backMostObject = currentObjects[0];
+            if(!backMostObject)
+            {
+                currentObjects.RemoveAt(0);
+                return;
+            }
 
             float currentPosition = backMostObject.transform.position.z + backMostObject.GetComponent<BoxCollider>().size.z / 2;
 

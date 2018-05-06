@@ -51,7 +51,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 010561e9da0d93f47be965abcf217ea5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 0}
   invisbleFence: {fileID: 1380727573956556, guid: a25455c70a4cc634cb9711ae76d2b3c1,
     type: 2}
   sourceFences:
@@ -62,6 +61,13 @@ MonoBehaviour:
   - {fileID: 1907471151560956, guid: 9477ff5e1d3f3014fb9964cc5de06a82, type: 2}
   sourceGrounds:
   - {fileID: 1655249705513076, guid: 2d12be3fbd8e4044eb8cde04f425fa8e, type: 2}
+  itemBoxPrefab: {fileID: 1667580631561908, guid: dd5fa7f9b8d6dae4a8b5a0d4a35f1753,
+    type: 2}
+  items:
+  - {fileID: 1682196776335540, guid: 4c239090f8f1bee44a921df2906800fd, type: 2}
+  - {fileID: 1030354074040322, guid: 71ce0633880c5d54bb536e88bd75c9fc, type: 2}
+  - {fileID: 1347194895557112, guid: 9f2649bf7fd4a3e4281a5c4c749fb59c, type: 2}
+  - {fileID: 1840234386367654, guid: b63fac0f17f2c8842bec57c714e8577b, type: 2}
   renderDistance: 40
   mapLength: 400
   buildingSpacing: 2
@@ -71,3 +77,8 @@ MonoBehaviour:
   fenceSpacing: 0.25
   fenceOffset: -5
   groundOffset: -20
+  trackRadius: 4.5
+  itemBoxSeparation: 5
+  itemBoxGap: 2
+  itemBoxChance: 0.25
+  lastItemAttempt: 6

@@ -32,6 +32,7 @@ public class CreateHerd : Item
             GameController.theGame.lastManager.GetComponent<PlayerManagerController>().baseOrientation) + new Vector3(trackRadius * direction.x, verticalOffset, 0);
         Instantiate(herdPrefab, spawnPoint, Quaternion.identity);
         Destroy(herdAimObject);
+        herdAimObject = null;
         return true;
     }
 

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GameController : MonoBehaviour {
+    public static GameController theGame;
+
     public float playerSpeed;
     public float baseSpeed;
 	public GameObject lastPlayer = null;
@@ -16,6 +18,7 @@ public class GameController : MonoBehaviour {
     void Start () {
 		minZ = Mathf.Infinity;
 		maxZ = Mathf.NegativeInfinity;
+        theGame = this;
     }
 	
 	// Update is called once per frame

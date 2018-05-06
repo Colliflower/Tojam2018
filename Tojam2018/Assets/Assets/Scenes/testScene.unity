@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657952, g: 0.49641365, b: 0.57481635, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657892, g: 0.49641275, b: 0.5748151, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2041,17 +2041,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65ff31b8b1cbc744d83e34a1fa01e4f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveHorizontalAxisName: j4_p1_LR
-  moveVerticalAxisName: j4_p1_FB
-  throwHorizontalAxisName: j4_p1_SLR
-  throwVerticalAxisName: j4_p1_SFB
+  moveHorizontalAxisName: lj_p1_SLR
+  moveVerticalAxisName: lj_p1_SFB
+  throwHorizontalAxisName: lj_p1_LR
+  throwVerticalAxisName: lj_p1_FB
   cam: {fileID: 2082607866}
   playerManager: {fileID: 0}
   minDistOffset: -4
+  playerId: 1
   throwDeadzone: 0.25
   itemIcon: {fileID: 1481258456}
   heldColour: {r: 1, g: 1, b: 1, a: 1}
   activeColour: {r: 0, g: 1, b: 0, a: 1}
+  speedUpAmount: 0
   log: 0
 --- !u!95 &1082683452
 Animator:
@@ -2489,7 +2491,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 4294963967
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -2834,17 +2836,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65ff31b8b1cbc744d83e34a1fa01e4f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveHorizontalAxisName: j4_p1_SLR
-  moveVerticalAxisName: j4_p1_SFB
-  throwHorizontalAxisName: j4_p1_SLR
-  throwVerticalAxisName: j4_p1_SFB
+  moveHorizontalAxisName: lj_p2_LR
+  moveVerticalAxisName: lj_p2_FB
+  throwHorizontalAxisName: lj_p2_SLR
+  throwVerticalAxisName: lj_p2_SFB
   cam: {fileID: 1440691205}
   playerManager: {fileID: 0}
   minDistOffset: -4
+  playerId: 2
   throwDeadzone: 0.5
   itemIcon: {fileID: 940241556}
   heldColour: {r: 1, g: 1, b: 1, a: 1}
   activeColour: {r: 0, g: 1, b: 0, a: 1}
+  speedUpAmount: 0
   log: 0
 --- !u!1 &1610384565
 GameObject:
@@ -3620,7 +3624,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 4294963711
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0

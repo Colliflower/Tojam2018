@@ -26,6 +26,9 @@ public class PlayerController : MonoBehaviour {
 
     private Vector3 lastFrameVelocity;
 
+    [Range(1, 4)]
+    public int playerId;
+
     // ===== Item stuff ===== //
     [Header("Throwing")]
     public float throwDeadzone = .5f;

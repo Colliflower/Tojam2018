@@ -225,8 +225,7 @@ public class PlayerController : MonoBehaviour {
     {
         return lastFrameVelocity;
     }
-		
-
+	
 	void OnTriggerStay(Collider collider){
         HerdSpawner sp = collider.gameObject.GetComponent<HerdSpawner>();
 
@@ -238,6 +237,7 @@ public class PlayerController : MonoBehaviour {
 			playerManager.playerSpeed = 0;
 		}
 	}
+
 	void OnTriggerExit(Collider collider){
 		if (collider.gameObject.GetComponent<HerdSpawner>()) {
 			//Debug.Log ("Left collider");
@@ -245,4 +245,9 @@ public class PlayerController : MonoBehaviour {
 			playerManager.playerSpeed = playerManager.gameManager.GetComponent<GameController> ().playerSpeed;
 		}
 	}
+
+    public void BlackHoleTriggered()
+    {
+
+    }
 }

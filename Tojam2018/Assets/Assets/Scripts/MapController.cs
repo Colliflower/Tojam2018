@@ -11,6 +11,8 @@ public class MapController : MonoBehaviour {
 
     public GameObject[] sourceBuildings;
 
+    public GameObject[] sourceGrounds;
+
     public float renderDistance;
 
     public float mapLength;
@@ -27,6 +29,8 @@ public class MapController : MonoBehaviour {
 
     public float fenceOffset;
 
+    public float groundOffset;
+
     private List<GameObject> leftBuildings;
 
     private List<GameObject> rightBuildings;
@@ -34,6 +38,8 @@ public class MapController : MonoBehaviour {
     private List<GameObject> leftFences;
 
     private List<GameObject> rightFences;
+
+    private List<GameObject> grounds;
 
     // Use this for initialization
     void Start () {
@@ -62,6 +68,8 @@ public class MapController : MonoBehaviour {
         leftFences = new List<GameObject>();
 
         rightFences = new List<GameObject>();
+
+        grounds = new List<GameObject>();
     }
 	
 	// Update is called once per frame
@@ -75,14 +83,17 @@ public class MapController : MonoBehaviour {
         SpawnObjects(sourceFences, leftFences, currentFrontier, fenceSpacing, fenceOffset, -fenceWidth, Quaternion.identity);
         SpawnObjects(sourceFences, rightFences, currentFrontier, fenceSpacing, fenceOffset, fenceWidth, Quaternion.identity);
 
+        SpawnObjects(sourceGrounds, grounds, currentFrontier, 0, groundOffset, 0, Quaternion.identity, false);
+
         GameObject backMostPlayer = gameManager.GetComponent<GameController>().lastPlayer;
 
         currentFrontier = backMostPlayer.transform.position.z;
 
-        DeSpawnObjects(sourceBuildings, leftBuildings, currentFrontier);
-        DeSpawnObjects(sourceBuildings, rightBuildings, currentFrontier);
-        DeSpawnObjects(sourceFences, leftFences, currentFrontier);
-        DeSpawnObjects(sourceFences, rightFences, currentFrontier);
+        DeSpawnObjects(leftBuildings, currentFrontier);
+        DeSpawnObjects(rightBuildings, currentFrontier);
+        DeSpawnObjects(leftFences, currentFrontier);
+        DeSpawnObjects(rightFences, currentFrontier);
+        DeSpawnObjects(grounds, currentFrontier);
 
         //float currLength;
 
@@ -232,7 +243,7 @@ public class MapController : MonoBehaviour {
         //}
     }
 
-    private void SpawnObjects(GameObject[] sourceObjects, List<GameObject> currentObjects, float currentFrontier, float spacing, float offset, float width, Quaternion orientation)
+    private void SpawnObjects(GameObject[] sourceObjects, List<GameObject> currentObjects, float currentFrontier, float spacing, float offset, float width, Quaternion orientation, bool shouldCenter = true)
     {
         if (sourceObjects.Length > 0)
         {
@@ -271,13 +282,20 @@ public class MapController : MonoBehaviour {
 
                 Vector3 objectPosition;
 
-                if (width < 0)
+                if (shouldCenter)
                 {
-                    objectPosition = new Vector3(width - objectScale.x / 2, 0, currLength + objectScale.z / 2 + offset);
+                    if (width < 0)
+                    {
+                        objectPosition = new Vector3(width - objectScale.x / 2, 0, currLength + objectScale.z / 2 + offset);
+                    }
+                    else
+                    {
+                        objectPosition = new Vector3(width + objectScale.x / 2, 0, currLength + objectScale.z / 2 + offset);
+                    }
                 }
                 else
                 {
-                    objectPosition = new Vector3(width + objectScale.x / 2, 0, currLength + objectScale.z / 2 + offset);
+                    objectPosition = new Vector3(width, 0, currLength + objectScale.z / 2 + offset);
                 }
 
                 GameObject instance = Instantiate(sourceObjects[objectIx], objectPosition, orientation);
@@ -293,13 +311,20 @@ public class MapController : MonoBehaviour {
 
                     objectScale = sourceObjects[objectIx].GetComponent<BoxCollider>().size;
 
-                    if (width < 0)
+                    if (shouldCenter)
                     {
-                        objectPosition.x = width - objectScale.x / 2;
+                        if (width < 0)
+                        {
+                            objectPosition.x = width - objectScale.x / 2;
+                        }
+                        else
+                        {
+                            objectPosition.x = width + objectScale.x / 2;
+                        }
                     }
                     else
                     {
-                        objectPosition.x = width + objectScale.x / 2;
+                        objectPosition.x = width;
                     }
 
                     objectPosition.y = 0;
@@ -316,7 +341,7 @@ public class MapController : MonoBehaviour {
         }
     }
 
-    private void DeSpawnObjects(GameObject[] sourceObjects, List<GameObject> currentObjects, float currentFrontier)
+    private void DeSpawnObjects(List<GameObject> currentObjects, float currentFrontier)
     {
         if (currentObjects.Count > 0)
         {

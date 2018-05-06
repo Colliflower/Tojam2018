@@ -18,13 +18,24 @@ public class BlackHoleController : MonoBehaviour {
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.GetComponent<Rigidbody>() && !creator.Equals(collision.GetComponent<Rigidbody>().gameObject) && collision.GetComponent<Rigidbody>().GetComponent<PlayerController>()) {
-            Vector3 playerPos = collision.GetComponent<Rigidbody>().transform.position;
-            collision.GetComponent<Rigidbody>().transform.position = creator.transform.position;
-            creator.transform.position = playerPos;
+        if (collision.attachedRigidbody && !creator.Equals(collision.attachedRigidbody.gameObject) && collision.attachedRigidbody.GetComponent<PlayerController>()) {
 
-            creator.GetComponent<PlayerController>().BlackHoleTriggered();
-            collision.GetComponent<Rigidbody>().GetComponent<PlayerController>().BlackHoleTriggered();
+            PlayerController creatorController = creator.GetComponent<PlayerController>();
+            Vector3 relativeCreatorCamDistance = creatorController.cam.transform.position - creator.transform.position;
+
+            PlayerController otherController = collision.attachedRigidbody.GetComponent<PlayerController>();
+            Vector3 relativeOtherCamDistance = otherController.cam.transform.position - otherController.transform.position;
+
+            Vector3 otherPosition = collision.attachedRigidbody.transform.position;
+            collision.attachedRigidbody.transform.position = creator.transform.position;
+            creator.transform.position = otherPosition;
+
+            creatorController.cam.transform.position = creator.transform.position + relativeCreatorCamDistance;
+
+            otherController.cam.transform.position = otherController.transform.position + relativeOtherCamDistance;
+
+            creatorController.BlackHoleTriggered();
+            otherController.BlackHoleTriggered();
             Debug.Log("test");
 
             Destroy(gameObject);

@@ -30,9 +30,9 @@ public class BlackHoleController : MonoBehaviour {
             collision.attachedRigidbody.transform.position = creator.transform.position;
             creator.transform.position = otherPosition;
 
-            creatorController.cam.transform.position = creator.transform.position + relativeCreatorCamDistance;
+            creatorController.cam.transform.position = new Vector3(creatorController.cam.transform.position.x, creatorController.cam.transform.position.y, creator.transform.position.z + relativeCreatorCamDistance.z);
 
-            otherController.cam.transform.position = otherController.transform.position + relativeOtherCamDistance;
+            otherController.cam.transform.position = new Vector3(otherController.cam.transform.position.x, otherController.cam.transform.position.y, otherController.transform.position.z + relativeOtherCamDistance.z);
 
             creatorController.BlackHoleTriggered();
             otherController.BlackHoleTriggered();

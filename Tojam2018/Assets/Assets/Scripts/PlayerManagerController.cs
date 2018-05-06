@@ -7,7 +7,7 @@ public class PlayerManagerController : MonoBehaviour {
     public float playerSpeed;
     public float baseSpeed;
     public Vector3 baseOrientation;
-    [ReadOnly] public Vector3 baseMovement;
+    public Vector3 baseMovement;
 
     [Header("Local References")]
     public GameObject character;

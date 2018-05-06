@@ -21,7 +21,6 @@ public abstract class Item : MonoBehaviour
     {
         bool val = OnActivated();
         this.isActivated = !val;
-        Debug.Log("Val: " + val);
         return val;
     }
 

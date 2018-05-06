@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour {
 
     private Rigidbody rb;
 
-    private PlayerManagerController playerManager;
+    public PlayerManagerController playerManager;
 
     public float minDistOffset;
 

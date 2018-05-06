@@ -51,14 +51,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 010561e9da0d93f47be965abcf217ea5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   invisbleFence: {fileID: 1380727573956556, guid: a25455c70a4cc634cb9711ae76d2b3c1,
     type: 2}
-  fence: {fileID: 1606165764035988, guid: 1fcd05421a7936e45a10d6046aeb4909, type: 2}
+  sourceFences: []
   sourceBuildings:
   - {fileID: 1268785787143388, guid: d911b405dfe53044d93e3845aec82d77, type: 2}
   - {fileID: 1898260702683852, guid: d564087a44e498044b6a65796ea06e3f, type: 2}
   - {fileID: 1907471151560956, guid: 9477ff5e1d3f3014fb9964cc5de06a82, type: 2}
-  mapLength: 200
+  renderDistance: 0
+  mapLength: 400
   buildingSpacing: 2
   buildingWidth: 8
   buildingOffset: -5

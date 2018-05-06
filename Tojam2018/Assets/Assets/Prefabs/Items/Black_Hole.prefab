@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4613733396914390}
   - component: {fileID: 65043008833452232}
+  - component: {fileID: 114236299784690316}
   m_Layer: 0
   m_Name: Black_Hole
   m_TagString: Untagged
@@ -64,7 +65,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1283730648589968}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 56.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4245341826191708}
@@ -120,8 +121,20 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1283730648589968}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 0.4, z: 1}
   m_Center: {x: 0, y: 0.2, z: 0}
+--- !u!114 &114236299784690316
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1283730648589968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e0cbcc7bde8e5c41afdcb954b147597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  creator: {fileID: 0}

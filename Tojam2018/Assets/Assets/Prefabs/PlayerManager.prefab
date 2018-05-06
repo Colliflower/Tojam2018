@@ -804,7 +804,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1041814666537394}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.98, z: 0}
+  m_LocalPosition: {x: -1.5, y: -1.98, z: 0}
   m_LocalScale: {x: 0.45, y: 0.45, z: 0.45}
   m_Children:
   - {fileID: 4118023666551594}
@@ -1093,7 +1093,7 @@ MonoBehaviour:
   playerManager: {fileID: 114041608236458396}
   minDistOffset: -4
   playerId: 1
-  throwDeadzone: 0.25
+  throwDeadzone: 0.9
   itemIcon: {fileID: 0}
   heldColour: {r: 1, g: 1, b: 1, a: 1}
   activeColour: {r: 0, g: 1, b: 0, a: 1}

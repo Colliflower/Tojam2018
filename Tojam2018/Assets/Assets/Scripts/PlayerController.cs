@@ -244,6 +244,8 @@ public class PlayerController : MonoBehaviour {
 
     private void CleanUpItem()
     {
+        itemIsActive = false;
+        previousThrowVector = Vector3.zero;
         storedItem.CleanUp();
         Destroy(storedItem.gameObject);
         storedItem = null;

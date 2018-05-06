@@ -99,7 +99,7 @@ MonoBehaviour:
   numGoats: 7
   xOffset: 1.5
   zOffset: 1.5
-  speed: 12
+  speed: 18
   step: 0.5
   variance: 0.2
   particles: {fileID: 198562565569037396}

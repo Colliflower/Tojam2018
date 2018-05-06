@@ -12,9 +12,18 @@ public class PlayerController : MonoBehaviour {
     public string throwHorizontalAxisName;
     public string throwVerticalAxisName;
 
+	public AudioClip[] footsteps;
+
     public GameObject cam;
 
     private float playerSpeed = 1;
+
+	private AudioSource audioSource;
+
+	private float audioStep;
+	private float audioCounter;
+
+	private bool canStep;
 
     private Rigidbody rb;
 
@@ -57,6 +66,11 @@ public class PlayerController : MonoBehaviour {
         playerSpeed = playerManager.playerSpeed;
 
         initDist = Vector3.Project(cam.transform.position - transform.position, playerManager.baseOrientation).magnitude;
+
+		audioSource = GetComponent<AudioSource> ();
+
+		canStep = true;
+		audioStep = playerManager.baseSpeed/20;
     }
 
 	// Update is called once per frame
@@ -81,6 +95,20 @@ public class PlayerController : MonoBehaviour {
         }
 
         HandleItem();
+		if (footsteps.Length > 0) {
+			audioStep = playerManager.baseSpeed/20;
+			audioCounter += audioStep;
+			if (audioCounter > 1) {
+				audioCounter = 0;
+				canStep = true;
+			}
+			audioSource.clip = footsteps [Mathf.RoundToInt (Random.value * 5)];
+			if (canStep && !audioSource.isPlaying) {
+				audioSource.Play ();
+				canStep = false;
+			}
+		}
+
     }
 
     void HandleMovement()

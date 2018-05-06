@@ -36,6 +36,11 @@ public class MenuController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (Input.GetKeyDown("escape"))
+        {
+            Application.Quit();
+        }
+
         if (Input.GetAxis("menu_LR") > -0.8) {
             canGoLeft = true; 
         }

@@ -29,6 +29,8 @@ public class CameraController : MonoBehaviour {
         baseMove = playerManager.baseMovement;
         transform.position += baseMove * Time.fixedDeltaTime;
 
+        playerManager.baseOrientation.z = 1;
+
         currDist = Vector3.Project(player.transform.position - transform.position, playerManager.baseOrientation).magnitude;
 
         if (currDist > initDist + maxDistOffset)

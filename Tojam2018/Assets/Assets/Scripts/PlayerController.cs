@@ -42,6 +42,8 @@ public class PlayerController : MonoBehaviour {
     public ParticleSystem sys2;
     public float teleportParticlesPlayTime;
 
+    public AudioSource cheer;
+
     // ===== Item stuff ===== //
     [Header("Throwing")]
     public float throwDeadzone = .5f;
@@ -303,5 +305,17 @@ public class PlayerController : MonoBehaviour {
         mod.enabled = false;
         mod = sys2.emission;
         mod.enabled = false;
+    }
+
+    public void PlayCheer(float time)
+    {
+        StartCoroutine(playCheerSound(time));
+    }
+
+    IEnumerator playCheerSound(float Time)
+    {
+        cheer.Play();
+        yield return new WaitForSeconds(Time);
+        cheer.Stop();
     }
 }

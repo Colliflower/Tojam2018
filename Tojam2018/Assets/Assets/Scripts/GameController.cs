@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour {
     public static GameController theGame;
@@ -21,9 +22,22 @@ public class GameController : MonoBehaviour {
 		maxZ = Mathf.NegativeInfinity;
         theGame = this;
     }
-	
-	// Update is called once per frame
-	void FixedUpdate () {
+
+    void Update()
+    {
+        if (Input.GetButtonDown("menu_Start"))
+        {
+            SceneManager.LoadScene("Menu");
+        }
+
+        if (Input.GetKeyDown("escape"))
+        {
+            Application.Quit();
+        }
+    }
+
+    // Update is called once per frame
+    void FixedUpdate () {
 		Transform currPlayer;
 		minZ = Mathf.Infinity;
 		maxZ = Mathf.NegativeInfinity;

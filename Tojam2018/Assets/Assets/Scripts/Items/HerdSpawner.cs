@@ -15,6 +15,7 @@ public class HerdSpawner : MonoBehaviour {
     public float variance = .2f;
 	private bool toDestroy;
     public ParticleSystem particles;
+    public AudioSource src;
 	// Use this for initialization
 	void Start () {
 		timer = 0;
@@ -57,6 +58,7 @@ public class HerdSpawner : MonoBehaviour {
 				}
 				toDestroy = true;
                 particles.Stop();
+                src.Stop();
 			}
 		} else {
 			timer += step;

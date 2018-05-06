@@ -37,6 +37,7 @@ public class FanSpawner : Item
             }
 
         }
+        user.PlayCheer(duration);
         return true;
     }
     // Called every tick that the item is held by the player (whether activated or not).

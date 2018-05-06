@@ -27,7 +27,7 @@ public class GoalController : MonoBehaviour {
             playersFinished++;
             if (playersFinished == GameController.theGame.playerCount - 1)
             {
-                if (pc.playerId == 1)
+                if (GameController.theGame.lastPlayer.GetComponent<PlayerController>().playerId == 1)
                 {
                     p1Win.SetActive(true);
                 }

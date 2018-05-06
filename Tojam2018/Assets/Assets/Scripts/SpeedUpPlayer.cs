@@ -12,6 +12,8 @@ public class SpeedUpPlayer : MonoBehaviour
     public Throwable throwScript;
     public SpinObject spinScript;
     public Transform bottleTransform;
+    
+    public AudioSource waterBottleHit;
 
     private PlayerController targetPC;
     private float startTime = -1;
@@ -47,6 +49,7 @@ public class SpeedUpPlayer : MonoBehaviour
             throwScript.lifeTime = -1;
             spinScript.eulerSpin = new Vector3(0, bottleSpinSpeed, 0);
             startTime = Time.time;
+            waterBottleHit.Play();
         }
     }
 }

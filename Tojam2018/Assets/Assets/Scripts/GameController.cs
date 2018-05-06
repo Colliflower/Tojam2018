@@ -16,7 +16,7 @@ public class GameController : MonoBehaviour {
 	float minZ;
 	float maxZ;
     // Use this for initialization
-    void Start () {
+    void Awake () {
 		minZ = Mathf.Infinity;
 		maxZ = Mathf.NegativeInfinity;
         theGame = this;

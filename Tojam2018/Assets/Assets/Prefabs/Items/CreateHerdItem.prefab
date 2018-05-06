@@ -51,8 +51,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 773d0958a318d414e98e7a31db2370aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
-  trackRadius: 5
+  icon: {fileID: 21300000, guid: 26e1e6984407c1148931bf132a27502f, type: 3}
+  trackRadius: 3.5
   verticalOffset: 0.98
   herdPrefab: {fileID: 1498464071058312, guid: ae4f19021eee54fd58b59ffabe825d20, type: 2}
   herdAimPrefab: {fileID: 1240327891356492, guid: 2ab7f2e63c5d3fd4fa2f615853d7e367,

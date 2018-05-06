@@ -51,10 +51,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e66cfcb0a90ff484cbd1c19f7e2de9ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  icon: {fileID: 21300000, guid: 7e21909da594b3047b9637c4795861bb, type: 3}
   throwSpeed: 20
   throwSpawnRadius: 1.5
   throwSpawnHeight: 1
   throwPrefab: {fileID: 1986759321501888, guid: aec6ad4c6da96a940b938ca76f9932fa,
+    type: 2}
+  throwAimPrefab: {fileID: 1291116374807374, guid: 5d7141ed6a415d84394bdf94866fbc96,
     type: 2}
   addPlayerSpeed: 1

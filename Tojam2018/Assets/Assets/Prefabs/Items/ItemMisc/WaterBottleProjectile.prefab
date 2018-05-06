@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 4137717874334260}
   - component: {fileID: 114907341551876894}
   m_Layer: 0
-  m_Name: SphereProjectile
+  m_Name: WaterBottleProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

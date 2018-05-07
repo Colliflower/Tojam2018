@@ -9,6 +9,8 @@ public class GameController : MonoBehaviour {
 
     public float playerSpeed;
     public float baseSpeed;
+    private float initPlayerSpeed;
+    private float initBaseSpeed;
 	public GameObject lastPlayer = null;
 	public GameObject lastManager = null;
 	public GameObject firstPlayer = null;
@@ -17,10 +19,25 @@ public class GameController : MonoBehaviour {
 	private GameObject[] playerManagers;
 	float minZ;
 	float maxZ;
+    private int counter;
+    public float step;
+    private float stepCounter;
+
+    public GameObject[] startCounter;
+
+    public AudioClip[] startSounds;
+    private AudioSource gameSounds;
 
     void Start()
     {
         UnityEngine.Random.InitState((int)DateTime.Now.Ticks);
+        counter = 3;
+        stepCounter = 0;
+        gameSounds = GetComponent<AudioSource>();
+        initBaseSpeed = baseSpeed;
+        initPlayerSpeed = playerSpeed;
+        baseSpeed = 0;
+        playerSpeed = 0;
     }
     // Use this for initialization
     void Awake () {
@@ -31,6 +48,32 @@ public class GameController : MonoBehaviour {
 
     void Update()
     {
+        if (counter >= 0)
+        {
+            stepCounter += step;
+            if (stepCounter > 10)
+            {
+                startCounter[counter].SetActive(false);
+                counter -= 1;
+                stepCounter = 0;
+                if (counter >= 0)
+                {
+                    gameSounds.clip = startSounds[counter];
+                    gameSounds.Play();
+                    startCounter[counter].SetActive(true);
+                }
+                if (counter == 0)
+                {
+                    baseSpeed = initBaseSpeed;
+                    playerSpeed = initPlayerSpeed;
+                    foreach (GameObject playerManager in playerManagers)
+                    {
+                        playerManager.GetComponent<PlayerManagerController>().baseSpeed = baseSpeed;
+                        playerManager.GetComponent<PlayerManagerController>().playerSpeed = playerSpeed;
+                    }
+                }
+            }
+        }
         if (Input.GetButtonDown("menu_Start"))
         {
             SceneManager.LoadScene("Menu");
@@ -40,6 +83,7 @@ public class GameController : MonoBehaviour {
         {
             Application.Quit();
         }
+        
     }
 
     // Update is called once per frame

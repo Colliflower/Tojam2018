@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -16,6 +17,11 @@ public class GameController : MonoBehaviour {
 	private GameObject[] playerManagers;
 	float minZ;
 	float maxZ;
+
+    void Start()
+    {
+        UnityEngine.Random.InitState((int)DateTime.Now.Ticks);
+    }
     // Use this for initialization
     void Awake () {
 		minZ = Mathf.Infinity;

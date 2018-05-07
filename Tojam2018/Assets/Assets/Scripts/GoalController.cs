@@ -24,6 +24,7 @@ public class GoalController : MonoBehaviour {
         {
             Debug.Log(pmc.name + " Finished!");
             pmc.baseSpeed = 0;
+            pmc.playerSpeed = 0;
             playersFinished++;
             if (playersFinished == GameController.theGame.playerCount - 1)
             {

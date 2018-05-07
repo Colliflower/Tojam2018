@@ -5,15 +5,22 @@ using UnityEngine;
 
 public class BlackHoleController : MonoBehaviour {
     public GameObject creator;
-
+    private BoxCollider holeCollider;
+    public float increaseSpeed;
+    public float sizeLimitScalar;
+    private float initScale;
     // Use this for initialization
     void Start () {
-		
+        holeCollider = GetComponent<BoxCollider>();
+        initScale = transform.localScale.x;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+        if (transform.localScale.x < initScale * sizeLimitScalar)
+        {
+            transform.localScale = new Vector3(transform.localScale.x + increaseSpeed, transform.localScale.y, transform.localScale.z + increaseSpeed);
+        }
 	}
 
     private void OnTriggerEnter(Collider collision)
